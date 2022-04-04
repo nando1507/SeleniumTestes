@@ -1,0 +1,13 @@
+C:\Users\nando\source\repos\Selenium Object\Selenium\bin\Debug\net5.0\Selenium.deps.json
+C:\Users\nando\source\repos\Selenium Object\Selenium\bin\Debug\net5.0\Selenium.dll
+C:\Users\nando\source\repos\Selenium Object\Selenium\bin\Debug\net5.0\Selenium.pdb
+C:\Users\nando\source\repos\Selenium Object\Selenium\obj\Debug\net5.0\Selenium.csproj.AssemblyReference.cache
+C:\Users\nando\source\repos\Selenium Object\Selenium\obj\Debug\net5.0\Selenium.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nando\source\repos\Selenium Object\Selenium\obj\Debug\net5.0\Selenium.AssemblyInfoInputs.cache
+C:\Users\nando\source\repos\Selenium Object\Selenium\obj\Debug\net5.0\Selenium.AssemblyInfo.cs
+C:\Users\nando\source\repos\Selenium Object\Selenium\obj\Debug\net5.0\Selenium.csproj.CoreCompileInputs.cache
+C:\Users\nando\source\repos\Selenium Object\Selenium\obj\Debug\net5.0\Selenium.dll
+C:\Users\nando\source\repos\Selenium Object\Selenium\obj\Debug\net5.0\ref\Selenium.dll
+C:\Users\nando\source\repos\Selenium Object\Selenium\obj\Debug\net5.0\Selenium.pdb
+C:\Users\nando\source\repos\Selenium Object\Selenium\obj\Debug\net5.0\Selenium.csproj.CopyComplete
+C:\Users\nando\source\repos\Selenium Object\Selenium\obj\Debug\net5.0\refint\Selenium.dll

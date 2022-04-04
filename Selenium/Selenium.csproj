@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="TextTemplate1.vb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Fakes Include="TextTemplate1.vb">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TextTemplate1.cs</LastGenOutput>
+    </Fakes>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="TextTemplate1.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TextTemplate1.vb</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Selenium">
+      <HintPath>..\..\..\..\AppData\Local\SeleniumBasic\Selenium.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="TextTemplate1.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TextTemplate1.vb</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,20 @@
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\Selenium Object.exe
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\Selenium Object.deps.json
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\Selenium Object.runtimeconfig.json
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\Selenium Object.runtimeconfig.dev.json
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\Selenium Object.dll
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\Selenium Object.pdb
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\WebDriver.dll
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Selenium Object.csproj.AssemblyReference.cache
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Selenium Object.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Selenium Object.AssemblyInfoInputs.cache
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Selenium Object.AssemblyInfo.cs
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Selenium Object.csproj.CoreCompileInputs.cache
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Selenium Object.dll
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\ref\Selenium Object.dll
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Selenium Object.pdb
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Selenium Object.genruntimeconfig.cache
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Selenium Object.csproj.CopyComplete
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\chromedriver.exe
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\ref\Selenium Object.dll
