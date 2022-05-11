@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "HHYWhMGFmWhAnZgeXNAo9+HAHpfTvK6uhEvm/KRA/G9Ag8nrydL5xCJocHYQvQ/TKYs/2TKW8FqcHC3pdXVupQ==",
+  "dgSpecHash": "svM9R86SgWFsi8zMc20l0+x17+NfrnCIFGfpQZ/z1mq4wY76zU80wuxqJFdyr/82WKeDAUC7/9jRDTrse5oaWA==",
   "success": true,
   "projectFilePath": "C:\\Users\\nando\\source\\repos\\Selenium Object\\Selenium Object\\Selenium Object.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nando\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\nando\\.nuget\\packages\\selenium.support\\4.1.0\\selenium.support.4.1.0.nupkg.sha512",
     "C:\\Users\\nando\\.nuget\\packages\\selenium.webdriver\\4.1.0\\selenium.webdriver.4.1.0.nupkg.sha512"
   ],
   "logs": []

@@ -18,3 +18,4 @@ C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Sel
 C:\Users\nando\source\repos\Selenium Object\Selenium Object\obj\Debug\net5.0\Selenium Object.csproj.CopyComplete
 C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\chromedriver.exe
 C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\ref\Selenium Object.dll
+C:\Users\nando\source\repos\Selenium Object\Selenium Object\bin\Debug\net5.0\WebDriver.Support.dll

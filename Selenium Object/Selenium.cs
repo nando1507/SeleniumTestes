@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using Selenium_Object.Enums;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Selenium_Object
@@ -15,30 +17,112 @@ namespace Selenium_Object
     public class Selenium
     {
         TimeSpan time = TimeSpan.FromSeconds(60);
-        IWebDriver driver;
+        ChromeDriver selChrome = new ChromeDriver();
+        By selBy;
+        WebElement htmlWebElement;
+        SelectElement htmlSelect;
+        //TableElement htmlTable;
+        //alert htmlAlert;
+        Boolean blnSemErro;
+        String strError;
 
         public ChromeDriver startBrowser()
         {
             ChromeOptions options = new ChromeOptions();
-            options.AcceptInsecureCertificates = true;
-            options.LeaveBrowserRunning = true;
-            options.UseWebSocketUrl = true;
+            options.AcceptInsecureCertificates = false;
+            options.LeaveBrowserRunning = false;
+            options.UseWebSocketUrl = false;
+            ChromeDriver startBrowser = new ChromeDriver(FindChromeDriver(), options, time);
+            startBrowser.CloseDevToolsSession();
+            startBrowser.ClearNetworkConditions();
 
-            return new ChromeDriver(FindChromeDriver(), options);
+            return startBrowser;
 
         }
+        public bool maximizar(IWebDriver driver, bool maximizar = false)
+        {            
+            driver.Manage().Window.Position.Offset(0,0);
+            driver.Manage().Window.Maximize();
+            return !maximizar;
+        }
 
-        public void test(string url)
+
+
+        public bool navegar(IWebDriver driver, string url)
         {
-            driver.Url = url;
+            try
+            {
+                driver.Navigate().GoToUrl(url);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro: {ex.Message}");
+                return false;
+            }
         }
 
-        public void closeBrowser()
+        bool DefineBusca(EnumTipoBusca Busca, String ParametroBusca)
         {
-            driver.Close();
+            try
+            {
+                //Parâmetro de pesquisa                
+                switch (Busca)
+                {
+                    case EnumTipoBusca.ByXPath:
+                        selBy = By.XPath(ParametroBusca);
+                        break;
+                    case EnumTipoBusca.ById:
+                        selBy = By.Id(ParametroBusca);
+                        break;
+                    case EnumTipoBusca.ByCss:
+                        selBy = By.CssSelector(ParametroBusca);
+                        break;
+                    case EnumTipoBusca.ByTag:
+                        selBy = By.TagName(ParametroBusca);
+                        break;
+                    case EnumTipoBusca.ClassName:
+                        selBy = By.TagName(ParametroBusca);
+                        break;
+                    case EnumTipoBusca.LinkText:
+                        selBy = By.TagName(ParametroBusca);
+                        break;
+                    case EnumTipoBusca.Name:
+                        selBy = By.TagName(ParametroBusca);
+                        break;
+                    case EnumTipoBusca.PartialLinkText:
+                        selBy = By.TagName(ParametroBusca);
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro: {ex.Message}");
+                return false;
+            }
         }
 
-        public string FindChromeDriver()
+        bool closeBrowser(IWebDriver driver)
+        {
+            try
+            {
+                driver.Close();
+                driver.Quit();
+                driver.Dispose();
+                return true;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro: {ex.Message}");
+                return false;
+            }
+        }
+
+        string FindChromeDriver()
         {
             DirectoryInfo dir = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
             var info = dir.GetFiles("chromedriver.exe", SearchOption.TopDirectoryOnly);
@@ -46,188 +130,24 @@ namespace Selenium_Object
             return info[0].DirectoryName;
         }
 
+
+
         public void Inicio()
         {
             using (IWebDriver driver = startBrowser())
             {
-                driver.Navigate().GoToUrl("https://www.palmeiras.com.br/listas-e-rankings/");
-
-                Console.Clear();
-
-                StringBuilder builder = new StringBuilder();
-                builder.Append(driver.PageSource.ToString());
-                List<ClasseSaida> lst = new List<ClasseSaida>();
+                maximizar(driver,true);
 
 
-                //string page = driver.PageSource.ToString();
-                foreach (var item in tags())
-                {
-                    ClasseSaida saida = new ClasseSaida();
-
-                    string pattern = $@"<{item} .*\>([^:]+)</{item}>";
-                    RegexOptions options = RegexOptions.Multiline;
-                    MatchCollection collection = Regex.Matches(builder.ToString(), pattern, options);
-
-                    saida.ObjetoHTML = item;
-                    saida.QuantidadeHTML = collection.Count();
-
-                    foreach (var obj in collection)
-                    {
-                        foreach (string objInterno in new string[] { "target", "class", "id" })
-                        {
-                            string patternCss = $"{objInterno}[=|:]\"([^:\"$]+)\"";
-                            MatchCollection collection1 = Regex.Matches(obj.ToString(), patternCss, options);
-                            
-                            saida.ObjetoCSS = objInterno.ToString();
-                            saida.QuantidadeCSS = collection1.Count();
-                            saida.Conteudo = collection1.ToList();
-                        }
-                    }
-
-                    lst.Add(saida);
-
-                }
+                navegar(driver, "https://www.palmeiras.com.br/listas-e-rankings/");
+                Thread.Sleep(1000);
 
 
-                Console.Clear();
-                foreach (ClasseSaida item in lst)
-                {
-                    Console.WriteLine($"{item.ObjetoHTML} {item.QuantidadeHTML} {item.ObjetoCSS} {item.QuantidadeCSS} {item.Conteudo}");
-                }
 
 
-                driver.Quit();
+                closeBrowser(driver);
                 Console.ReadKey();
             }
-        }
-
-        public List<string> tags()
-        {
-            List<string> tag = new List<string>();
-
-            tag.Add("!--...--");
-            tag.Add("!doctype");
-            tag.Add("a");
-            tag.Add("abbr");
-            tag.Add("acronym");
-            tag.Add("address");
-            tag.Add("applet");
-            tag.Add("area");
-            tag.Add("article");
-            tag.Add("aside");
-            tag.Add("audio");
-            tag.Add("b");
-            tag.Add("base");
-            tag.Add("basefont");
-            tag.Add("bb");
-            tag.Add("bdo");
-            tag.Add("big");
-            tag.Add("blockquote");
-            tag.Add("body");
-            tag.Add("br");
-            tag.Add("button");
-            tag.Add("canvas");
-            tag.Add("caption");
-            tag.Add("center");
-            tag.Add("cite");
-            tag.Add("code");
-            tag.Add("col");
-            tag.Add("colgroup");
-            tag.Add("command");
-            tag.Add("datagrid");
-            tag.Add("datalist");
-            tag.Add("dd");
-            tag.Add("del");
-            tag.Add("details");
-            tag.Add("dfn");
-            tag.Add("dialog");
-            tag.Add("dir");
-            tag.Add("div");
-            tag.Add("dl");
-            tag.Add("dt");
-            tag.Add("em");
-            tag.Add("embed");
-            tag.Add("eventsource");
-            tag.Add("fieldset");
-            tag.Add("figcaption");
-            tag.Add("figure");
-            tag.Add("font");
-            tag.Add("footer");
-            tag.Add("form");
-            tag.Add("frame");
-            tag.Add("frameset");
-            tag.Add("h1 to h6");
-            tag.Add("head");
-            tag.Add("header");
-            tag.Add("hgroup");
-            tag.Add("hr /");
-            tag.Add("html");
-            tag.Add("i");
-            tag.Add("iframe");
-            tag.Add("img");
-            tag.Add("input");
-            tag.Add("ins");
-            tag.Add("isindex");
-            tag.Add("kbd");
-            tag.Add("keygen");
-            tag.Add("label");
-            tag.Add("legend");
-            tag.Add("li");
-            tag.Add("link");
-            tag.Add("map");
-            tag.Add("mark");
-            tag.Add("menu");
-            tag.Add("meta");
-            tag.Add("meter");
-            tag.Add("nav");
-            tag.Add("noframes");
-            tag.Add("noscript");
-            tag.Add("object");
-            tag.Add("ol");
-            tag.Add("optgroup");
-            tag.Add("option");
-            tag.Add("output");
-            tag.Add("p");
-            tag.Add("param");
-            tag.Add("pre");
-            tag.Add("progress");
-            tag.Add("q");
-            tag.Add("rp");
-            tag.Add("rt");
-            tag.Add("ruby");
-            tag.Add("s");
-            tag.Add("samp");
-            tag.Add("script");
-            tag.Add("section");
-            tag.Add("select");
-            tag.Add("small");
-            tag.Add("source");
-            tag.Add("span");
-            tag.Add("strike");
-            tag.Add("strong");
-            tag.Add("style");
-            tag.Add("sub");
-            tag.Add("sup");
-            tag.Add("table");
-            tag.Add("tbody");
-            tag.Add("td");
-            tag.Add("textarea");
-            tag.Add("tfoot");
-            tag.Add("th");
-            tag.Add("thead");
-            tag.Add("time");
-            tag.Add("title");
-            tag.Add("tr");
-            tag.Add("track");
-            tag.Add("tt");
-            tag.Add("u");
-            tag.Add("ul");
-            tag.Add("var");
-            tag.Add("video");
-            tag.Add("wbr");
-
-
-            return tag;
         }
     }
 }
